@@ -149,6 +149,10 @@ function renderTabs() {
   for (const btn of el.tabs.querySelectorAll('.tab-btn')) {
     btn.addEventListener('click', () => {
       state.tab = btn.dataset.tab;
+      if (state.tab === 'overview') {
+        state.scenario = 'baseline_raw_sim_dps';
+        el.scenario.value = state.scenario;
+      }
       savePrefs();
       render(window.__records);
       renderTabs();
@@ -323,6 +327,9 @@ function applyUiState() {
 }
 
 loadPrefs();
+if (state.tab === 'overview' && (!state.scenario || state.scenario === 'all')) {
+  state.scenario = 'baseline_raw_sim_dps';
+}
 el.metric.value = state.metric;
 el.scenario.value = state.scenario;
 el.tierState.value = state.tierState;
