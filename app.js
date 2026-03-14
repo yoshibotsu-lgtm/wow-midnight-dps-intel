@@ -224,7 +224,7 @@ function render(records) {
   el.kpiMedian.textContent = fmt[state.metric](median(filtered.map((r) => r[key] ?? 0)));
 }
 
-const data = await fetch('./data/normalized.json').then((r) => r.json());
+const data = await fetch(`./data/normalized.json?v=${Date.now()}`, { cache: 'no-store' }).then((r) => r.json());
 window.__records = data.records;
 options(el.scenario, unique(data.records, 'scenario'));
 options(el.tierState, unique(data.records, 'tierState'));
