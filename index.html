@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Midnight DPS Intel</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">World of Warcraft · Midnight</p>
+        <h1>Midnight DPS Intel</h1>
+        <p class="subtitle">Tier + PI sim analytics</p>
+      </div>
+      <div class="top-actions">
+        <div class="toggle-group">
+          <button class="toggle-btn active" id="themeToggle" type="button">🌙 Dark</button>
+          <button class="toggle-btn active" id="viewToggle" type="button">📊 Graph View</button>
+        </div>
+        <div class="sync" id="syncInfo"></div>
+      </div>
+    </header>
+
+    <nav class="tabs" id="tabs"></nav>
+
+    <section class="controls-wrap">
+      <div class="controls-head">
+        <strong>Filters</strong>
+        <div class="controls-actions">
+          <button id="densityToggle" class="filters-toggle" type="button">Comfortable</button>
+          <button id="resetFilters" class="filters-toggle" type="button">Reset</button>
+          <button id="filtersToggle" class="filters-toggle" type="button">Hide</button>
+        </div>
+      </div>
+      <section class="controls" id="controls">
+        <label>Metric
+          <select id="metric">
+            <option value="raw_gain">Raw Gain</option>
+            <option value="pct_gain">% Gain</option>
+            <option value="absolute_dps">Absolute DPS</option>
+          </select>
+        </label>
+        <label>Scenario
+          <select id="scenario"></select>
+        </label>
+        <label>Tier State
+          <select id="tierState"></select>
+        </label>
+        <label>Class
+          <select id="className"></select>
+        </label>
+        <label>Search Spec
+          <div class="search-wrap">
+            <span class="search-icon">⌕</span>
+            <input id="search" placeholder="Fire Mage Sunfury" />
+          </div>
+        </label>
+      </section>
+    </section>
+
+    <section class="kpis">
+      <article class="kpi"><h3>Top Spec</h3><strong id="kpiTop">-</strong></article>
+      <article class="kpi"><h3>Median</h3><strong id="kpiMedian">-</strong></article>
+      <article class="kpi"><h3>Records</h3><strong id="kpiCount">0</strong></article>
+    </section>
+
+    <section class="tab-note" id="tabNote"></section>
+
+    <section class="graph-wrap" id="graphWrap">
+      <div class="graph-head">
+        <h3>Top Specs</h3>
+        <div class="graph-metric-toggle" id="graphMetricToggle">
+          <button type="button" class="gm-btn" data-metric="raw_gain">Raw Gain</button>
+          <button type="button" class="gm-btn" data-metric="absolute_dps">Abs DPS</button>
+        </div>
+        <p id="graphSub">By selected metric and filters</p>
+      </div>
+      <div id="graphLegend" class="graph-legend"></div>
+      <div id="graphTicks" class="graph-ticks"></div>
+      <div id="bars" class="bars"></div>
+    </section>
+
+    <section class="table-wrap" id="tableWrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="col-rank">#</th><th>Spec</th><th>Class</th><th class="sortable" id="sortTier">Tier</th><th>Scenario</th><th class="num sortable" id="sortMetric">Raw Gain</th><th class="num sortable" id="sortAbsDps">Abs DPS</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
